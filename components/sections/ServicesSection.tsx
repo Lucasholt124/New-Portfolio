@@ -243,11 +243,16 @@ export async function ServicesSection() {
                     </div>
                   )}
 
-                  {/* CTA Button */}
-                  <button className="w-full flex items-center justify-center gap-2 px-6 py-3 sm:py-4 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-semibold text-sm sm:text-base group/btn shadow-lg hover:shadow-xl">
+                  {/* CTA Button - Redireciona para freelinnk.com */}
+                  <Link
+                    href="https://freelinnk.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 sm:py-4 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-semibold text-sm sm:text-base group/btn shadow-lg hover:shadow-xl"
+                  >
                     <span>Solicitar orçamento</span>
                     <IconArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -325,6 +330,17 @@ export async function ServicesSection() {
                         {service.timeline}
                       </p>
                     )}
+
+                    {/* CTA Button - Redireciona para mysite-eog7.vercel.app/contrato */}
+                    <Link
+                      href="https://mysite-eog7.vercel.app/contrato"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-semibold text-sm group/btn"
+                    >
+                      <span>Solicitar orçamento</span>
+                      <IconArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                 </div>
               ))}
