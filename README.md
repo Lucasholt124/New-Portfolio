@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Engenheiro de Software Full Stack & Especialista em IA - Portfolio
 
-## Getting Started
+Este é o meu novo portfólio profissional, desenvolvido para demonstrar o domínio em arquiteturas modernas, integração de Inteligência Artificial e gerenciamento de conteúdo dinâmico (Headless CMS).
 
-First, run the development server:
+## 🌐 Live Demo
+Confira o projeto online: [novo-portfólio-delta-loira.vercel.app](https://novo-portfólio-delta-loira.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Stack Tecnológica
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Framework:** [Next.js](https://nextjs.org/) (App Router & Server Components)
+- **Linguagem:** [TypeScript](https://www.typescript.org/) (Tipagem avançada e segurança)
+- **Gerenciamento de Conteúdo:** [Sanity.io](https://www.sanity.io/)
+- **IA Integration:** Implementação de camadas de lógica para consumo de LLMs.
+- **Estilização:** Tailwind CSS + Design Responsivo.
+- **Package Manager:** PNPM (Performance e eficiência em dependências).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 Diferenciais Técnicos (O "Under the Hood")
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **AI Prompt Engineering:** O repositório conta com uma estrutura dedicada para gestão de prompts, focando em resultados precisos de IA.
+- **Proxy de API:** Implementação de `proxy.ts` para segurança de chaves e tratamento de requisições sensíveis.
+- **Custom Hooks & Ganchos:** Arquitetura limpa para separação de lógica de negócio e interface.
+- **CMS Dinâmico:** Integração total com Sanity para atualização de projetos e experiências sem necessidade de novos deploys.
 
-## Learn More
+## 📁 Estrutura do Ecossistema
 
-To learn more about Next.js, take a look at the following resources:
+- `/aplicativo`: Estrutura de rotas e Server Actions.
+- `/componentes`: UI modular e desacoplada.
+- `/prompts`: Arquitetura de instruções para integração com modelos de IA.
+- `/sanidade`: Configuração de esquemas e tipos gerados automaticamente.
+- `/biblioteca`: Clientes de API e funções utilitárias.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Como Iniciar
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Instale as dependências:
+   ```bash
+   pnpm install
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Desenvolvido com foco em performance e inovação por Lucas Aragão.
