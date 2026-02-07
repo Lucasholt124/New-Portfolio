@@ -52,7 +52,7 @@ export async function HeroSection() {
   const whatsappMessage = encodeURIComponent(
     "Olá! Vi seu portfólio e gostaria de conversar sobre um projeto."
   );
-  const whatsappUrl = `https://wa.me/5579999383543${phoneNumber}?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/${5579999383543}?text=${whatsappMessage}`;
 
   const socialIcons: Record<
     string,
