@@ -11,6 +11,7 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@clerk/localizations": "^3.35.3",
     "@clerk/nextjs": "^6.37.3",
     "@openai/chatkit-react": "^1.1.1",
     "@portabletext/react": "^4.0.3",

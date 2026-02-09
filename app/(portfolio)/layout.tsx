@@ -14,6 +14,7 @@ import SidebarToggle from "@/components/SidebarToggle";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { ptBR } from "@clerk/localizations";
 
 // Styles
 import "../globals.css";
@@ -130,10 +131,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const isDraftMode = (await draftMode()).isEnabled;
 
   return (
-    <ClerkProvider
-  appearance={{
-    baseTheme: undefined,
-    variables: {
+  <ClerkProvider
+    localization={ptBR}
+    appearance={{
+      baseTheme: undefined,
+  
+      variables: {
       colorPrimary: "#3b82f6",
       colorBackground: "#ffffff",
       colorText: "#1f2937",
