@@ -1,4 +1,3 @@
-// components/chat/Chat.tsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -21,7 +20,7 @@ import {
   UserRound,
   Box,
   Sparkles,
-  MessageCircle
+  MessageCircle,
 } from "lucide-react";
 
 interface StartPrompt {
@@ -81,28 +80,32 @@ export function Chat({
 
   const startPrompts: StartPrompt[] = [
     {
-      icon: <Briefcase className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />,
+      icon: (
+        <Briefcase className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+      ),
       label: "Experiência",
-      prompt: "Conte-me sobre sua experiência profissional e funções anteriores",
-      gradient: "from-blue-500 to-cyan-500"
+      prompt:
+        "Conte-me sobre sua experiência profissional e funções anteriores",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: <Code2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />,
       label: "Habilidades",
-      prompt: "Em quais tecnologias e linguagens de programação você é especialista?",
-      gradient: "from-purple-500 to-pink-500"
+      prompt:
+        "Em quais tecnologias e linguagens de programação você é especialista?",
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: <Box className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />,
       label: "Projetos",
       prompt: "Mostre-me alguns dos seus projetos mais interessantes",
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-orange-500 to-red-500",
     },
     {
       icon: <User className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />,
       label: "Sobre mim",
       prompt: "Conte-me mais sobre você e sua história",
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-green-500 to-emerald-500",
     },
   ];
 
@@ -123,7 +126,7 @@ export function Chat({
     const userMessage: MessageWithId = {
       role: "user",
       content: messageText,
-      id: generateMessageId()
+      id: generateMessageId(),
     };
 
     const newMessages = [...messages, userMessage];
@@ -131,13 +134,15 @@ export function Chat({
     setIsLoading(true);
 
     try {
-      const apiMessages: ChatMessage[] = newMessages.map(({ role, content }) => ({ role, content }));
+      const apiMessages: ChatMessage[] = newMessages.map(
+        ({ role, content }) => ({ role, content })
+      );
       const response = await sendMessage(apiMessages, getSystemPrompt());
 
       const assistantMessage: MessageWithId = {
         role: "assistant",
         content: response,
-        id: generateMessageId()
+        id: generateMessageId(),
       };
 
       setMessages([...newMessages, assistantMessage]);
@@ -147,7 +152,7 @@ export function Chat({
       const errorMessage: MessageWithId = {
         role: "assistant",
         content: "Desculpe, ocorreu um erro. Por favor, tente novamente.",
-        id: generateMessageId()
+        id: generateMessageId(),
       };
 
       setMessages([...newMessages, errorMessage]);
@@ -164,12 +169,14 @@ export function Chat({
   // Auto scroll to bottom when new messages arrive
   useEffect(() => {
     if (scrollAreaRef.current) {
-      const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      const viewport = scrollAreaRef.current.querySelector(
+        "[data-radix-scroll-area-viewport]"
+      );
       if (viewport) {
         setTimeout(() => {
           viewport.scrollTo({
             top: viewport.scrollHeight,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }, 100);
       }
@@ -178,7 +185,7 @@ export function Chat({
 
   return (
     <Card className="flex flex-col h-full w-full border-0 rounded-none shadow-none bg-gradient-to-b from-background to-muted/20">
-      {/* Header - Mobile optimized */}
+      {/* Header */}
       <div className="flex items-center justify-between px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 border-b bg-background/95 backdrop-blur-sm">
         <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
           <div className="relative">
@@ -189,25 +196,39 @@ export function Chat({
           </div>
           <div>
             <h2 className="font-semibold text-xs sm:text-sm md:text-base">
-              {profile?.firstName ? `${profile.firstName} AI` : "Assistente AI"}
+              {profile?.firstName
+                ? `${profile.firstName} AI`
+                : "Assistente AI"}
             </h2>
             <p className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">
               Sempre online • Responde instantaneamente
             </p>
           </div>
         </div>
+
+        {/* Botão X - Visível em TODAS as telas */}
         <Button
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
-          className="md:hidden h-7 w-7 sm:h-8 sm:w-8"
+          className={cn(
+            "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9",
+            "rounded-full",
+            "hover:bg-red-500/10 hover:text-red-500",
+            "transition-all duration-200",
+            "group"
+          )}
+          aria-label="Fechar chat"
         >
-          <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <X className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:rotate-90 transition-transform duration-200" />
         </Button>
       </div>
 
-      {/* Messages Area - Mobile optimized */}
-      <ScrollArea ref={scrollAreaRef} className="flex-1 px-2 sm:px-3 md:px-4 py-3 sm:py-4 md:py-6">
+      {/* Messages Area */}
+      <ScrollArea
+        ref={scrollAreaRef}
+        className="flex-1 px-2 sm:px-3 md:px-4 py-3 sm:py-4 md:py-6"
+      >
         {messages.length === 0 ? (
           <div className="space-y-3 sm:space-y-4 md:space-y-6 animate-in fade-in duration-500">
             {/* Welcome Message */}
@@ -222,11 +243,12 @@ export function Chat({
                 {getGreeting()}
               </h3>
               <p className="text-[11px] sm:text-xs md:text-sm text-muted-foreground max-w-md mx-auto px-6 sm:px-4">
-                Pergunte sobre experiência, habilidades, projetos ou qualquer coisa que você queira saber.
+                Pergunte sobre experiência, habilidades, projetos ou qualquer
+                coisa que você queira saber.
               </p>
             </div>
 
-            {/* Start Prompts - Mobile optimized grid */}
+            {/* Start Prompts */}
             <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 max-w-lg mx-auto px-1 sm:px-2 md:px-0">
               {startPrompts.map((prompt, index) => (
                 <Button
@@ -242,17 +264,21 @@ export function Chat({
                   )}
                   onClick={() => handleSubmit(prompt.prompt)}
                   style={{
-                    animationDelay: `${index * 100}ms`
+                    animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <div className={cn(
-                    "p-1.5 sm:p-2 md:p-2.5 rounded-lg sm:rounded-xl bg-gradient-to-r text-white",
-                    "group-hover:scale-110 transition-transform duration-300",
-                    prompt.gradient
-                  )}>
+                  <div
+                    className={cn(
+                      "p-1.5 sm:p-2 md:p-2.5 rounded-lg sm:rounded-xl bg-gradient-to-r text-white",
+                      "group-hover:scale-110 transition-transform duration-300",
+                      prompt.gradient
+                    )}
+                  >
                     {prompt.icon}
                   </div>
-                  <span className="text-[10px] sm:text-xs md:text-sm font-medium">{prompt.label}</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-medium">
+                    {prompt.label}
+                  </span>
                 </Button>
               ))}
             </div>
@@ -267,7 +293,7 @@ export function Chat({
                   message.role === "user" ? "justify-end" : "justify-start"
                 )}
                 style={{
-                  animationDelay: `${index * 50}ms`
+                  animationDelay: `${index * 50}ms`,
                 }}
               >
                 <div
@@ -322,10 +348,13 @@ export function Chat({
         )}
       </ScrollArea>
 
-      {/* Input Form - Mobile optimized */}
+      {/* Input Form */}
       <div className="border-t bg-background/95 backdrop-blur-sm">
         <div className="p-2 sm:p-3 md:p-4">
-          <form onSubmit={handleFormSubmit} className="flex gap-1.5 sm:gap-2 max-w-3xl mx-auto">
+          <form
+            onSubmit={handleFormSubmit}
+            className="flex gap-1.5 sm:gap-2 max-w-3xl mx-auto"
+          >
             <div className="relative flex-1">
               <Input
                 ref={inputRef}
@@ -365,7 +394,7 @@ export function Chat({
             </Button>
           </form>
 
-          {/* Disclaimer - Mobile optimized */}
+          {/* Disclaimer */}
           <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground text-center mt-1.5 sm:mt-2 md:mt-3 px-4">
             <span className="inline-flex items-center gap-0.5 sm:gap-1">
               <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3" />

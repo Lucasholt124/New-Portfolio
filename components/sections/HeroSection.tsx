@@ -313,29 +313,87 @@ export async function HeroSection() {
               </div>
             </div>
 
-            {/* ═══ PROFILE IMAGE ═══ */}
+            {/* ═══ PROFILE IMAGE - ENHANCED ═══ */}
             <div className="order-1 lg:order-2 animate-fade-in-up animation-delay-200">
               {profile.profileImage && (
-                <div className="relative group max-w-[280px] sm:max-w-sm md:max-w-md mx-auto lg:max-w-none">
-                  {/* Outer glow */}
-                  <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-[1.5rem] sm:rounded-[2rem] opacity-15 blur-2xl sm:blur-3xl group-hover:opacity-25 transition-opacity duration-700 bg-[length:200%_auto] animate-hero-gradient" />
+                <div className="relative group max-w-[320px] sm:max-w-md md:max-w-lg mx-auto lg:max-w-none">
+                  {/* Animated border glow - rotates on hover */}
+                  <div
+                    className="absolute -inset-[3px] sm:-inset-1 rounded-2xl lg:rounded-3xl z-10 opacity-60 blur-[2px] animate-[spin_8s_linear_infinite] group-hover:opacity-100 group-hover:blur-[4px] transition-all duration-500"
+                    style={{
+                      backgroundImage:
+                        "conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6)",
+                    }}
+                  />
 
-                  {/* Image container */}
-                  <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border/10">
+                  {/* Inner border mask */}
+                  <div className="absolute -inset-[1px] sm:inset-0 rounded-2xl lg:rounded-3xl z-10 bg-background" />
+
+                  {/* Outer glow pulse */}
+                  <div className="absolute -inset-6 sm:-inset-8 lg:-inset-10 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-[2rem] sm:rounded-[2.5rem] opacity-10 blur-2xl sm:blur-3xl group-hover:opacity-30 transition-opacity duration-700 bg-[length:200%_auto] animate-hero-gradient" />
+
+                  {/* Secondary animated glow */}
+                  <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-tr from-cyan-500/20 via-transparent to-amber-500/20 rounded-[1.5rem] sm:rounded-[2rem] opacity-0 group-hover:opacity-100 blur-xl sm:blur-2xl transition-opacity duration-700 animate-pulse" />
+
+                  {/* Main image container */}
+                  <div className="relative z-20 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-border/10 transition-all duration-700 ease-out group-hover:shadow-[0_25px_60px_-12px_rgba(139,92,246,0.35)] group-hover:scale-[1.02] group-active:scale-[0.98]">
+                    {/* Image */}
                     <ProfileImage
                       imageUrl={urlFor(profile.profileImage)
-                        .width(800)
-                        .height(800)
+                        .width(900)
+                        .height(900)
                         .quality(95)
                         .url()}
                       firstName={profile.firstName || ""}
                       lastName={profile.lastName || ""}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Hover overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    {/* Shine sweep effect on hover */}
+                    <div
+                      className="absolute inset-0 bg-[position:200%_0] group-hover:bg-[position:-50%_0] transition-[background-position] duration-1000 ease-out pointer-events-none"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0.05) 55%, transparent 70%)",
+                        backgroundSize: "250% 100%",
+                      }}
+                    />
+
+                    {/* Mobile: continuous subtle shimmer animation */}
+                    <div
+                      className="absolute inset-0 sm:hidden animate-[shimmer-mobile_4s_ease-in-out_infinite] pointer-events-none"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.03) 55%, transparent 70%)",
+                        backgroundSize: "250% 100%",
+                      }}
+                    />
+
+                    {/* Bottom info bar on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4 sm:p-5 lg:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                        <span className="text-white/90 text-xs sm:text-sm font-medium">
+                          {profile.availability || "Disponível para projetos"}
+                        </span>
+                      </div>
+                      <p className="text-white/60 text-[10px] sm:text-xs mt-1">
+                        {profile.headline || "Full Stack Developer"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Floating particles around image (desktop) */}
+                  <div className="hidden lg:block">
+                    <div className="absolute -top-3 -right-3 z-30 w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-60 animate-[float-particle_5s_ease-in-out_infinite] shadow-lg shadow-blue-400/30" />
+                    <div className="absolute top-1/4 -left-4 z-30 w-3 h-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 opacity-50 animate-[float-particle_7s_ease-in-out_infinite_1s] shadow-lg shadow-purple-400/30" />
+                    <div className="absolute -bottom-2 right-1/4 z-30 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 opacity-50 animate-[float-particle_6s_ease-in-out_infinite_2s] shadow-lg shadow-amber-400/30" />
                   </div>
 
                   {/* Stats cards - mobile: row below image */}
-                  <div className="flex justify-center gap-2.5 sm:gap-3 mt-4 sm:hidden">
+                  <div className="flex justify-center gap-2.5 sm:gap-3 mt-6 sm:hidden">
                     {stats.map((stat, i) => {
                       const StatIcon = stat.icon;
                       return (
@@ -364,18 +422,18 @@ export async function HeroSection() {
                     {stats.map((stat, i) => {
                       const StatIcon = stat.icon;
                       const positions = [
-                        "-top-4 -left-6 lg:-left-10",
-                        "-bottom-4 -right-6 lg:-right-10",
-                        "-bottom-4 -left-4 lg:-left-8",
+                        "-top-4 -left-6 lg:-left-12",
+                        "-bottom-4 -right-6 lg:-right-12",
+                        "-bottom-4 -left-4 lg:-left-10",
                       ];
 
                       return (
                         <div
                           key={i}
-                          className={`absolute ${positions[i]} z-20 animate-float-card`}
+                          className={`absolute ${positions[i]} z-30 animate-float-card`}
                           style={{ animationDelay: `${i * 2}s` }}
                         >
-                          <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border/50 bg-card/90 backdrop-blur-md shadow-lg">
+                          <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border/50 bg-card/90 backdrop-blur-md shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                               <StatIcon className="w-4 h-4 text-primary" />
                             </div>
@@ -393,9 +451,11 @@ export async function HeroSection() {
                     })}
                   </div>
 
-                  {/* Corner decorations */}
-                  <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-primary/30 rounded-tr-lg hidden sm:block" />
-                  <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-primary/30 rounded-bl-lg hidden sm:block" />
+                  {/* Corner decorations - enhanced */}
+                  <div className="absolute -top-3 -right-3 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl hidden sm:block group-hover:border-purple-500/60 transition-colors duration-500" />
+                  <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl hidden sm:block group-hover:border-purple-500/60 transition-colors duration-500" />
+                  <div className="absolute -top-3 -left-3 w-5 h-5 border-t-2 border-l-2 border-purple-500/20 rounded-tl-lg hidden lg:block group-hover:border-cyan-500/40 transition-colors duration-500" />
+                  <div className="absolute -bottom-3 -right-3 w-5 h-5 border-b-2 border-r-2 border-purple-500/20 rounded-br-lg hidden lg:block group-hover:border-cyan-500/40 transition-colors duration-500" />
                 </div>
               )}
             </div>

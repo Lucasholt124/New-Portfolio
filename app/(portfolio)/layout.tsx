@@ -131,14 +131,90 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <ClerkProvider
-      appearance={{
-        baseTheme: undefined,
-        variables: {
-          colorPrimary: "#3b82f6",
-          colorBackground: "transparent",
-        },
-      }}
-    >
+  appearance={{
+    baseTheme: undefined,
+    variables: {
+      colorPrimary: "#3b82f6",
+      colorBackground: "#ffffff",
+      colorText: "#1f2937",
+      colorTextSecondary: "#6b7280",
+      colorInputBackground: "#ffffff",
+      colorInputText: "#1f2937",
+      colorNeutral: "#374151",
+    },
+    elements: {
+      // Modal/Card principal
+      card: "bg-white shadow-xl border border-gray-200",
+      modalContent: "bg-white",
+      modalBackdrop: "bg-black/50",
+
+      // Header
+      headerTitle: "text-gray-900",
+      headerSubtitle: "text-gray-600",
+
+      // Formulários
+      formFieldLabel: "text-gray-700",
+      formFieldInput:
+        "bg-white border-gray-300 text-gray-900 placeholder:text-gray-400",
+      formFieldInputShowPasswordButton: "text-gray-500",
+
+      // Botões
+      formButtonPrimary:
+        "bg-blue-500 hover:bg-blue-600 text-white shadow-md",
+      formButtonReset: "text-blue-500 hover:text-blue-600",
+
+      // Links
+      footerActionLink: "text-blue-500 hover:text-blue-600",
+      footerActionText: "text-gray-600",
+
+      // Social buttons (Google, GitHub, etc.)
+      socialButtonsBlockButton:
+        "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50",
+      socialButtonsBlockButtonText: "text-gray-700",
+      socialButtonsProviderIcon: "brightness-100",
+
+      // Divider
+      dividerLine: "bg-gray-300",
+      dividerText: "text-gray-500",
+
+      // User Button (avatar no canto)
+      userButtonBox: "shadow-none",
+      userButtonTrigger: "shadow-none",
+      userButtonPopoverCard:
+        "bg-white border border-gray-200 shadow-xl",
+      userButtonPopoverActionButton: "text-gray-700 hover:bg-gray-100",
+      userButtonPopoverActionButtonText: "text-gray-700",
+      userButtonPopoverFooter: "border-t border-gray-200",
+
+      // User Profile
+      profileSectionTitle: "text-gray-900",
+      profileSectionContent: "text-gray-700",
+      profileSectionPrimaryButton: "text-blue-500",
+
+      // Alerts
+      alertText: "text-gray-700",
+
+      // Badge
+      badge: "bg-blue-100 text-blue-700",
+
+      // Internal/Root
+      rootBox: "bg-transparent",
+
+      // Identifiers
+      identityPreview: "bg-gray-50 border border-gray-200",
+      identityPreviewText: "text-gray-700",
+      identityPreviewEditButton: "text-blue-500",
+
+      // OTP Input
+      otpCodeFieldInput: "bg-white border-gray-300 text-gray-900",
+
+      // Select
+      selectButton: "bg-white border-gray-300 text-gray-900",
+      selectOptionsContainer: "bg-white border-gray-200",
+      selectOption: "text-gray-700 hover:bg-gray-100",
+    },
+  }}
+>
       <html
         lang="pt-BR"
         suppressHydrationWarning
